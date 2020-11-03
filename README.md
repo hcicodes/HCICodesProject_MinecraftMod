@@ -1,5 +1,6 @@
 #  HCI Codes - Mod
 A work in progress mod for Minecraft 1.15.2
+Humberside's Coding Club collaborative project
 
 
 ## Environment Setup
