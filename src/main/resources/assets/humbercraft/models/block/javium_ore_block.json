@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "humbercraft:blocks/java_block"
+    "all": "humbercraft:blocks/javium_ore_block"
   }
 }

@@ -52,7 +52,7 @@ public class HumberCraft
     {
     	@Override
     	public ItemStack createIcon() {
-    		return new ItemStack(RegistryHandler.JAVA.get());
+    		return new ItemStack(RegistryHandler.JAVIUM.get());
     	}
     };
     

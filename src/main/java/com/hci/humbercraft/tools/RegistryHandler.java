@@ -13,7 +13,7 @@ import com.hci.humbercraft.items.BlockItemBase;
 import com.hci.humbercraft.items.ItemBase;
 import com.hci.humbercraft.HumberCraft;
 import com.hci.humbercraft.blocks.BlockBase;
-import com.hci.humbercraft.blocks.JavaOreBlock;
+import com.hci.humbercraft.blocks.JaviumOreBlock;
 
 public class RegistryHandler {
 
@@ -26,20 +26,13 @@ public class RegistryHandler {
 	}
 	
 	// Items
-	public static final RegistryObject<Item> JAVA = ITEMS.register("java", ItemBase::new);
-		
-	// Blocks
-	public static final RegistryObject<Block> BLOCKBOI = BLOCKS.register("blockboi", () -> new BlockBase(Block.Properties.create(Material.IRON).lightValue(10)));	
-	public static final RegistryObject<Block> JAVA_BLOCK = BLOCKS.register("java_block", () -> new BlockBase(Block.Properties.create(Material.IRON)
-			.sound(SoundType.STONE)
-			.harvestLevel(3)
-			.harvestTool(ToolType.PICKAXE)));
-	public static final RegistryObject<Block> JAVA_ORE_BLOCK = BLOCKS.register("java_ore_block", JavaOreBlock::new);
+	public static final RegistryObject<Item> JAVIUM = ITEMS.register("javium", ItemBase::new);
 	
-	// Block Items
-	public static final RegistryObject<Item> TUTORIAL_BLOCK = ITEMS.register("blockboi", () -> new BlockItemBase(BLOCKBOI.get()));
-	public static final RegistryObject<Item> JAVA_BLOCK_ITEM = ITEMS.register("java_block", () -> new BlockItemBase(JAVA_BLOCK.get()));
-	public static final RegistryObject<Item> JAVA_ORE_BLOCK_ITEM = ITEMS.register("java_ore_block", () -> new BlockItemBase(JAVA_ORE_BLOCK.get()));
+	public static final RegistryObject<Block> JAVIUM_BLOCK = BLOCKS.register("javium_block", () -> new BlockBase(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 5.0f).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));		
+	public static final RegistryObject<Item> JAVIUM_BLOCK_ITEM = ITEMS.register("javium_block", () -> new BlockItemBase(JAVIUM_BLOCK.get()));
+	
+	public static final RegistryObject<Block> JAVIUM_ORE_BLOCK = BLOCKS.register("javium_ore_block", JaviumOreBlock::new);	
+	public static final RegistryObject<Item> JAVIUM_ORE_BLOCK_ITEM = ITEMS.register("javium_ore_block", () -> new BlockItemBase(JAVIUM_ORE_BLOCK.get()));
 	
 	
 }

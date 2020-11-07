@@ -7,8 +7,7 @@
         {
           "type": "minecraft:alternatives",
           "children": [
-            {
-             {
+                      {
               "type": "minecraft:item",
               "conditions": [
                 {
@@ -25,28 +24,30 @@
                   }
                 }
               ],
-              "name": "humbercraft:java_ore_block"
+              "name": "humbercraft:javium_ore_block"
             },
+          
+            {
               "type": "minecraft:item",
               "functions": [
                 {
                   "function": "minecraft:set_count",
                   "count": {
-                    "min": 2,
-                    "max": 4,
+                    "min": 1,
+                    "max": 2,
                     "type": "minecraft:uniform"
                   }
-                  {
+                },
+				{
                   "function": "minecraft:apply_bonus",
                   "enchantment": "minecraft:fortune",
                   "formula": "minecraft:uniform_bonus_count",
                   "parameters": {
-                    "bonusMultiplier": 1
+                    "bonusMultiplier": 2
                   }
                 }
-                }
               ],
-              "name": "humbercraft:java"
+              "name": "humbercraft:javium"
             }
           ]
         }

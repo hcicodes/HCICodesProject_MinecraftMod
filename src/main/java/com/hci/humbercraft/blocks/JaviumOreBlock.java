@@ -5,11 +5,11 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
-public class JavaOreBlock extends Block{
+public class JaviumOreBlock extends Block{
 	
-	public JavaOreBlock() {
+	public JaviumOreBlock() {
 		super(Block.Properties.create(Material.IRON)
-				.hardnessAndResistance(5.0f)
+				.hardnessAndResistance(5.0f, 5.0f)
 				.sound(SoundType.METAL)
 				.harvestLevel(3)
 				.harvestTool(ToolType.PICKAXE)
