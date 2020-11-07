@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "jjj",
+    "jjj",
+    "jjj"
+  ],
+  "key":
+  {
+    "j":
+    {
+      "item": "humbercraft:javium"
+    }
+  },
+  "result":
+  {
+    "item": "humbercraft:javium_block",
+    "count": 1
+  }
+}
