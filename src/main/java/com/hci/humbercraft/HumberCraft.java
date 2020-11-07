@@ -16,7 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.hci.humbercraft.tools.RegistryHandler;
+import com.hci.humbercraft.util.RegistryHandler;
 
 @Mod("humbercraft")
 public class HumberCraft
@@ -30,7 +30,7 @@ public class HumberCraft
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        RegistryHandler.init();
+        com.hci.humbercraft.util.RegistryHandler.init();
         
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -52,7 +52,7 @@ public class HumberCraft
     {
     	@Override
     	public ItemStack createIcon() {
-    		return new ItemStack(RegistryHandler.JAVIUM.get());
+    		return new ItemStack(com.hci.humbercraft.util.RegistryHandler.JAVIUM.get());
     	}
     };
     

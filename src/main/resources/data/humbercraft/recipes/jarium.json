@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "humbercraft:jarium_block"
+    }
+  ],
+  "result":
+  {
+    "item": "humbercraft:jarium",
+    "count": 4
+  }
+}

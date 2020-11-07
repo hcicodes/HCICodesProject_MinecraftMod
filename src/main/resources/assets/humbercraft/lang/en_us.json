@@ -1,12 +1,13 @@
 {
 	"item.humbercraft.javium": "Javium",
+	"block.humbercraft.javium_block": "Javium Block",
+	"block.humbercraft.javium_ore_block": "Javium Ore",	
 	"item.humbercraft.jarium": "Jarium",
+	"item.humbercraft.jarium_sword": "Jarium Sword",
 	"block.humbercraft.jarium_block": "Jarium Block",
 	"item.humbercraft.classite": "Classite",
 	"item.humbercraft.methodite": "Methodite",
 	"item.humbercraft.sourcite": "Sourcite",
-	"block.humbercraft.sourcite_ore_block": "Sourcite Ore",
-	"block.humbercraft.javium_block": "Javium Block",
-	"block.humbercraft.javium_ore_block": "Javium Ore",	
+	"block.humbercraft.sourcite_ore_block": "Sourcite Ore",	
 	"itemGroup.humberCraft": "HumberCraft"
 }
