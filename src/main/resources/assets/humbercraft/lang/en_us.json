@@ -1,5 +1,7 @@
 {
 	"item.humbercraft.java": "Java",
+	"block.humbercraft.java_block": "Java Block",
+	"block.humbercraft.java_ore_block": "Java Ore",
 	"block.humbercraft.blockboi": "BlockBoi",
 	"itemGroup.humberCraft": "HumberCraft"
 }

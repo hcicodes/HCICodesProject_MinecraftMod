@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "humbercraft:blocks/blockboi" }
+            { "model": "humbercraft:block/blockboi" }
         ]
     }
 }
