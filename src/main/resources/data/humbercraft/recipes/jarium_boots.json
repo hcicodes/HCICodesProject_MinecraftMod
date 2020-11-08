@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "",
+    "X X",
+    "X X"
+  ],
+  "key":
+  {
+    "X":
+    {
+      "item": "humbercraft:jarium"
+    }
+  },
+  "result":
+  {
+    "item": "humbercraft:jarium_boots",
+    "count": 1
+  }
+}

@@ -4,6 +4,7 @@ import net.minecraft.item.*;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.registries.*;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.*;
@@ -13,6 +14,7 @@ import com.hci.humbercraft.items.BlockItemBase;
 import com.hci.humbercraft.items.ItemBase;
 import com.hci.humbercraft.tools.ModItemTier;
 import com.hci.humbercraft.HumberCraft;
+import com.hci.humbercraft.armor.ModArmorMaterial;
 import com.hci.humbercraft.blocks.BlockBase;
 import com.hci.humbercraft.blocks.JaviumOreBlock;
 
@@ -49,10 +51,32 @@ public class RegistryHandler {
 	new BlockBase(Block.Properties.create(Material.IRON).lightValue(10).hardnessAndResistance(5.0f, 5.0f).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));		
 	public static final RegistryObject<Item> JARIUM_BLOCK_ITEM = ITEMS.register("jarium_block", () -> new BlockItemBase(JARIUM_BLOCK.get()));
 		
-	//tools
+	//TOOLS
 	public static final RegistryObject<SwordItem> JARIUM_SWORD = ITEMS.register("jarium_sword", () -> 
 	new SwordItem(ModItemTier.JARIUM, 9, -3.0f, new Item.Properties().group(HumberCraft.TAB)));
 	
-
+	public static final RegistryObject<PickaxeItem> JARIUM_PICKAXE = ITEMS.register("jarium_pickaxe", () -> 
+	new PickaxeItem(ModItemTier.JARIUM, 4, -1.0f, new Item.Properties().group(HumberCraft.TAB)));
 	
+	public static final RegistryObject<ShovelItem> JARIUM_SHOVEL = ITEMS.register("jarium_shovel", () -> 
+	new ShovelItem(ModItemTier.JARIUM, 4, -1.0f, new Item.Properties().group(HumberCraft.TAB)));
+	
+	public static final RegistryObject<AxeItem> JARIUM_AXE = ITEMS.register("jarium_axe", () -> 
+	new AxeItem(ModItemTier.JARIUM, 4, -1.0f, new Item.Properties().group(HumberCraft.TAB)));
+	
+	public static final RegistryObject<HoeItem> JARIUM_HOE = ITEMS.register("jarium_hoe", () -> 
+	new HoeItem(ModItemTier.JARIUM, 4, new Item.Properties().group(HumberCraft.TAB)));
+	
+	//ARMOR
+	public static final RegistryObject<ArmorItem> JARIUM_HELMET = ITEMS.register("jarium_helmet", 
+			() -> new ArmorItem(ModArmorMaterial.JARIUM, EquipmentSlotType.HEAD, new Item.Properties().group(HumberCraft.TAB)));
+	
+	public static final RegistryObject<ArmorItem> JARIUM_CHESTPLATE = ITEMS.register("jarium_chestplate", 
+			() -> new ArmorItem(ModArmorMaterial.JARIUM, EquipmentSlotType.CHEST, new Item.Properties().group(HumberCraft.TAB)));
+	
+	public static final RegistryObject<ArmorItem> JARIUM_LEGGINGS = ITEMS.register("jarium_leggings", 
+			() -> new ArmorItem(ModArmorMaterial.JARIUM, EquipmentSlotType.LEGS, new Item.Properties().group(HumberCraft.TAB)));
+	
+	public static final RegistryObject<ArmorItem> JARIUM_BOOTS = ITEMS.register("jarium_boots", 
+			() -> new ArmorItem(ModArmorMaterial.JARIUM, EquipmentSlotType.FEET, new Item.Properties().group(HumberCraft.TAB)));
 }

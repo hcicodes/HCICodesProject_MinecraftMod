@@ -9,7 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 public enum ModItemTier implements IItemTier {
 	
 	JARIUM(4, 3000, 10.0f, 3.0f, 20, () ->{
-		return Ingredient.fromItems(RegistryHandler.JARIUM_SWORD.get());
+		return Ingredient.fromItems(RegistryHandler.JARIUM.get());
 	});
 
 	private final int harvestLevel;
