@@ -1,19 +1,22 @@
 package com.hci.humbercraft.armor;
 
 import java.util.function.Supplier;
-import com.hci.humbercraft.util.RegistryHandler;
-
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import com.hci.humbercraft.init.ItemInit;
 
 public enum ModArmorMaterial implements IArmorMaterial{
 	
 	JARIUM("humbercraft:jarium", 40, new int[] {3, 6, 7, 4} , 20, 
-			SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 3.0f, () -> {return Ingredient.fromItems(RegistryHandler.JARIUM.get());
-		});			
+			SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 3.0f, () -> {return Ingredient.fromItems(ItemInit.JARIUM.get());
+		}),
+	
+	JAVIUM("humbercraft:javium", 40, new int[] {3, 6, 7, 4} , 20, 
+			SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 3.0f, () -> {return Ingredient.fromItems(ItemInit.JAVIUM.get());
+		});		
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] {11, 16, 15, 13};	
 	private final String name;

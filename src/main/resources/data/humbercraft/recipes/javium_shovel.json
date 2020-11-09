@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "X",
+    "#",
+    "#"
+  ],
+  "key":
+  {
+    "X":
+    {
+      "item": "humbercraft:javium"
+    },
+    "#":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+  "result":
+  {
+    "item": "humbercraft:javium_shovel",
+    "count": 1
+  }
+}

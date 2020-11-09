@@ -1,7 +1,8 @@
 package com.hci.humbercraft.tools;
 
 import java.util.function.Supplier;
-import com.hci.humbercraft.util.RegistryHandler;
+
+import com.hci.humbercraft.init.ItemInit;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
@@ -9,7 +10,10 @@ import net.minecraft.item.crafting.Ingredient;
 public enum ModItemTier implements IItemTier {
 	
 	JARIUM(4, 3000, 10.0f, 3.0f, 20, () ->{
-		return Ingredient.fromItems(RegistryHandler.JARIUM.get());
+		return Ingredient.fromItems(ItemInit.JARIUM.get());
+	}),
+	JAVIUM(4, 3000, 10.0f, 3.0f, 20, () ->{
+		return Ingredient.fromItems(ItemInit.JAVIUM.get());
 	});
 
 	private final int harvestLevel;
