@@ -82,7 +82,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class PortalBlockInit {
-	
+	public static BlockPos portalPos;
 	public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<Block>(ForgeRegistries.BLOCKS,
 			HumberCraft.MOD_ID);
 
@@ -94,9 +94,6 @@ public class PortalBlockInit {
 		public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 		protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 		protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
-		private Object random;
-		private Object worldIn;
-
 		public PortalBlock(Properties properties) {
 			super(properties);
 			this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X));
@@ -114,9 +111,9 @@ public class PortalBlockInit {
 		}
 
 		public boolean trySpawnPortal(IWorld worldIn, BlockPos pos) {
-			PortalBlock.Size modportalblock$size = this.isPortal(worldIn, pos);
-			if (modportalblock$size != null) {
-				modportalblock$size.placePortalBlocks();
+			PortalBlock.Size javaportalblock$size = this.isPortal(worldIn, pos);
+			if (javaportalblock$size != null) {
+				javaportalblock$size.placePortalBlocks();
 				return true;
 			} else {
 				return false;
@@ -125,13 +122,13 @@ public class PortalBlockInit {
 
 		@Nullable
 		public PortalBlock.Size isPortal(IWorld worldIn, BlockPos pos) {
-			PortalBlock.Size modportalblock$size = new PortalBlock.Size(worldIn, pos, Direction.Axis.X);
-			if (modportalblock$size.isValid() && modportalblock$size.portalBlockCount == 0) {
-				return modportalblock$size;
+			PortalBlock.Size javaportalblock$size = new PortalBlock.Size(worldIn, pos, Direction.Axis.X);
+			if (javaportalblock$size.isValid() && javaportalblock$size.portalBlockCount == 0) {
+				return javaportalblock$size;
 			} else {
-				PortalBlock.Size modportalblock$size1 = new PortalBlock.Size(worldIn, pos, Direction.Axis.Z);
-				return modportalblock$size1.isValid() && modportalblock$size1.portalBlockCount == 0
-						? modportalblock$size1
+				PortalBlock.Size javaportalblock$size1 = new PortalBlock.Size(worldIn, pos, Direction.Axis.Z);
+				return javaportalblock$size1.isValid() && javaportalblock$size1.portalBlockCount == 0
+						? javaportalblock$size1
 						: null;
 			}
 		}
@@ -166,10 +163,10 @@ public class PortalBlockInit {
 				
 				if (entityIn.timeUntilPortal > 0) {
 					entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-				} else {
+				} 
+				else {
 					
 				}
-				
 				
 			}
 		}
@@ -180,83 +177,19 @@ public class PortalBlockInit {
 				public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw,
 						Function<Boolean, Entity> repositionEntity) {
 					entity = repositionEntity.apply(false);
-					entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 					makePortal(entityIn, destWorld);
+					entity.setPositionAndUpdate(portalPos.getX(), portalPos.getY() + 10, portalPos.getZ());
+					
 					return entity;
 				}
 			});
 			
 		}
 
-		@Override
-		@Deprecated
-		public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-			if (worldIn.dimension.isSurfaceWorld() && worldIn.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)
-					&& rand.nextInt(2000) < worldIn.getDifficulty().getId()) {
-				while (worldIn.getBlockState(pos).getBlock() == this) {
-					pos = pos.down();
-				}
-
-				if (worldIn.getBlockState(pos).canEntitySpawn(worldIn, pos, EntityType.ZOMBIE_PIGMAN)) {
-					Entity entity = EntityType.ZOMBIE_PIGMAN.spawn(worldIn, (CompoundNBT) null, (ITextComponent) null,
-							(PlayerEntity) null, pos.up(), SpawnReason.STRUCTURE, false, false);
-					if (entity != null) {
-						entity.timeUntilPortal = entity.getPortalCooldown();
-					}
-				}
-			}
-		}
-
-		@OnlyIn(Dist.CLIENT)
-		public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-			if (rand.nextInt(100) == 0) {
-				//worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
-						//SoundList.AMBIENT.get(), SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
-			}
-
-			for (int i = 0; i < 4; ++i) {
-				double d0 = (double) pos.getX() + (double) rand.nextFloat();
-				double d1 = (double) pos.getY() + (double) rand.nextFloat();
-				double d2 = (double) pos.getZ() + (double) rand.nextFloat();
-				double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-				double d4 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-				double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-				int j = rand.nextInt(2) * 2 - 1;
-				if (worldIn.getBlockState(pos.west()).getBlock() != this
-						&& worldIn.getBlockState(pos.east()).getBlock() != this) {
-					d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
-					d3 = (double) (rand.nextFloat() * 2.0F * (float) j);
-				} else {
-					d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) j;
-					d5 = (double) (rand.nextFloat() * 2.0F * (float) j);
-				}
-
-				//worldIn.addParticle(new ColouredParticleData((float) d0, (float) d1, (float) d2, 1.0F), d0, d1, d2, d3,d4, d5);
-			}
-
-		}
-
 		public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
 			return ItemStack.EMPTY;
 		}
 
-		@Deprecated
-		public BlockState rotate(BlockState state, Rotation rot) {
-			switch (rot) {
-			case COUNTERCLOCKWISE_90:
-			case CLOCKWISE_90:
-				switch ((Direction.Axis) state.get(AXIS)) {
-				case Z:
-					return state.with(AXIS, Direction.Axis.X);
-				case X:
-					return state.with(AXIS, Direction.Axis.Z);
-				default:
-					return state;
-				}
-			default:
-				return state;
-			}
-		}
 
 		@Override
 		protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
@@ -266,29 +199,29 @@ public class PortalBlockInit {
 		@SuppressWarnings("deprecation")
 		public static BlockPattern.PatternHelper createPatternHelper(IWorld world, BlockPos pos) {
 			Direction.Axis direction$axis = Direction.Axis.Z;
-			PortalBlock.Size modportalblock$size = new PortalBlock.Size(world, pos, Direction.Axis.X);
+			PortalBlock.Size javaportalblock$size = new PortalBlock.Size(world, pos, Direction.Axis.X);
 			LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(world, true);
-			if (!modportalblock$size.isValid()) {
+			if (!javaportalblock$size.isValid()) {
 				direction$axis = Direction.Axis.X;
-				modportalblock$size = new PortalBlock.Size(world, pos, Direction.Axis.Z);
+				javaportalblock$size = new PortalBlock.Size(world, pos, Direction.Axis.Z);
 			}
 
-			if (!modportalblock$size.isValid()) {
+			if (!javaportalblock$size.isValid()) {
 				return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
 			} else {
 				int[] aint = new int[Direction.AxisDirection.values().length];
-				Direction direction = modportalblock$size.rightDir.rotateYCCW();
-				BlockPos blockpos = modportalblock$size.bottomLeft.up(modportalblock$size.getHeight() - 1);
+				Direction direction = javaportalblock$size.rightDir.rotateYCCW();
+				BlockPos blockpos = javaportalblock$size.bottomLeft.up(javaportalblock$size.getHeight() - 1);
 
 				for (Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
 					BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(
 							direction.getAxisDirection() == direction$axisdirection ? blockpos
-									: blockpos.offset(modportalblock$size.rightDir, modportalblock$size.getWidth() - 1),
+									: blockpos.offset(javaportalblock$size.rightDir, javaportalblock$size.getWidth() - 1),
 							Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP,
-							loadingcache, modportalblock$size.getWidth(), modportalblock$size.getHeight(), 1);
+							loadingcache, javaportalblock$size.getWidth(), javaportalblock$size.getHeight(), 1);
 
-					for (int i = 0; i < modportalblock$size.getWidth(); ++i) {
-						for (int j = 0; j < modportalblock$size.getHeight(); ++j) {
+					for (int i = 0; i < javaportalblock$size.getWidth(); ++i) {
+						for (int j = 0; j < javaportalblock$size.getHeight(); ++j) {
 							CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
 							if (!cachedblockinfo.getBlockState().isAir()) {
 								++aint[direction$axisdirection.ordinal()];
@@ -307,9 +240,9 @@ public class PortalBlockInit {
 
 				return new BlockPattern.PatternHelper(
 						direction.getAxisDirection() == direction$axisdirection1 ? blockpos
-								: blockpos.offset(modportalblock$size.rightDir, modportalblock$size.getWidth() - 1),
+								: blockpos.offset(javaportalblock$size.rightDir, javaportalblock$size.getWidth() - 1),
 						Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP,
-						loadingcache, modportalblock$size.getWidth(), modportalblock$size.getHeight(), 1);
+						loadingcache, javaportalblock$size.getWidth(), javaportalblock$size.getHeight(), 1);
 			}
 		}
 		
@@ -320,6 +253,7 @@ public class PortalBlockInit {
 		      int j = MathHelper.floor(entityIn.getPosX());
 		      int k = MathHelper.floor(entityIn.getPosY());
 		      int l = MathHelper.floor(entityIn.getPosZ());
+		      portalPos = entityIn.getPosition();
 		      int i1 = j;
 		      int j1 = k;
 		      int k1 = l;
@@ -600,8 +534,7 @@ public class PortalBlockInit {
 					BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
 					for (int j = 0; j < this.height; ++j) {
-						this.world.setBlockState(blockpos.up(j),
-								PortalBlockInit.PORTAL.get().getDefaultState().with(NetherPortalBlock.AXIS, this.axis), 18);
+						this.world.setBlockState(blockpos.up(j), PortalBlockInit.PORTAL.get().getDefaultState().with(NetherPortalBlock.AXIS, this.axis), 18);
 					}
 				}
 

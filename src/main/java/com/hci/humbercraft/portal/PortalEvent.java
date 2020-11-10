@@ -1,6 +1,7 @@
 package com.hci.humbercraft.portal;
 
 import com.hci.humbercraft.HumberCraft;
+import com.hci.humbercraft.init.PortalInit;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FireBlock;
@@ -16,7 +17,7 @@ public class PortalEvent {
 	public static void createPortal(BlockEvent.EntityPlaceEvent event) {
 		BlockState state = event.getPlacedBlock();
 		if (state.getBlock() instanceof FireBlock) {
-			PortalBlockInit.PORTAL.get().trySpawnPortal(event.getWorld(), event.getPos());
+			PortalInit.JAVA_PORTAL.get().trySpawnPortal(event.getWorld(), event.getPos());
 		}
 	}
 }

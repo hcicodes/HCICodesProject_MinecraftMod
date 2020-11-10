@@ -1,11 +1,15 @@
 package com.hci.humbercraft;
 
+import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -24,6 +28,9 @@ import com.hci.humbercraft.init.BiomeInit;
 import com.hci.humbercraft.init.BlockInit;
 import com.hci.humbercraft.init.DimensionInit;
 import com.hci.humbercraft.init.ItemInit;
+import com.hci.humbercraft.init.ModContainerTypes;
+import com.hci.humbercraft.init.ModTileEntityTypes;
+import com.hci.humbercraft.init.PortalInit;
 import com.hci.humbercraft.portal.PortalBlockInit;
 import com.hci.humbercraft.util.RegistryHandler;
 
@@ -48,11 +55,15 @@ public class HumberCraft
         //initializing
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
-        //Tile Entitities
+
+        //other stuff above here
+        
+        ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
+        ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
         BiomeInit.BIOMES.register(modEventBus);
         DimensionInit.MOD_DIMENSIONS.register(modEventBus);
         
-        PortalBlockInit.BLOCKS.register(modEventBus);
+        PortalInit.BLOCKS.register(modEventBus);
         
       //BiomeInit.BIOMES.register(modEventBus);
       //DimensionInit.MOD_DIMENSIONS.register(modEventBus);
@@ -73,14 +84,19 @@ public class HumberCraft
     {
     }
     
+    /*
+    @SubscribeEvent
+    public static boolean onTrySpawnPortal(IWorld world, BlockPos pos, NetherPortalBlock.Size size)
+    {
+        return MinecraftForge.EVENT_BUS.post(new BlockEvent.PortalSpawnEvent(world, pos, world.getBlockState(pos), size));
+    }*/
     
     @SubscribeEvent
     public static void onRegisterBiomes(final RegistryEvent.Register<Biome> event) {
     	BiomeInit.registerBiomes();
     }
     
-  
-    
+      
     public static final ItemGroup TAB = new ItemGroup("humberCraft") 
     {
     	@Override

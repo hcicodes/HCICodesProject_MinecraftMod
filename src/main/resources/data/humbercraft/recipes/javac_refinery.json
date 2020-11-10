@@ -1,0 +1,10 @@
+{
+	"type": "humbercraft:test"
+	"output"{
+		"item": "humbercraft:sourcite"
+	},
+	"input": {
+		"item": "humbercraft:sourcite_ore_block"
+	}
+
+}
