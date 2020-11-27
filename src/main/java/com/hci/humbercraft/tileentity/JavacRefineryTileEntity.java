@@ -11,6 +11,8 @@ import com.hci.humbercraft.HumberCraft;
 import com.hci.humbercraft.blocks.BlockJavacRefinery;
 import com.hci.humbercraft.container.JavacRefineryContainer;
 import com.hci.humbercraft.init.ModTileEntityTypes;
+import com.hci.humbercraft.init.RecipeSerializerInit;
+import com.hci.humbercraft.recipes.JavacRefineryRecipe;
 import com.hci.humbercraft.util.JavacRefineryItemHandler;
 
 import net.minecraft.client.Minecraft;
@@ -41,6 +43,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import net.minecraftforge.api.distmarker.Dist;
 
 public class JavacRefineryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider{
 
@@ -73,12 +76,12 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 			if(this.world.isBlockPowered(this.getPos())) {
 				if (this.getRecipe(this.inventory.getStackInSlot(0)) != null) {
 					if (this.currentSmeltTime != this.maxSmeltTime) {
-						this.world.setBlockState(this.getPos(), this.getBlockState().with(BlockJavacRefinery.RUNNING, true));
+						this.world.setBlockState(this.getPos(), this.getBlockState().with(BlockJavacRefinery.LIT, true));
 						this.currentSmeltTime++;
 						dirty = true;
 					} else {
 						this.world.setBlockState(this.getPos(),
-								this.getBlockState().with(BlockJavacRefinery.RUNNING, false));
+								this.getBlockState().with(BlockJavacRefinery.LIT, false));
 						this.currentSmeltTime = 0;
 						ItemStack output = this.getRecipe(this.inventory.getStackInSlot(0)).getRecipeOutput();
 						this.inventory.insertItem(1, output.copy(), false);
@@ -136,7 +139,7 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 		if(this.customName != null) {
-			compound.putString("CustomeName", ITextComponent.Serializer.toJson(customName);
+			compound.putString("CustomeName", ITextComponent.Serializer.toJson(customName));
 		}
 		
 		ItemStackHelper.saveAllItems(compound, this.inventory.toNonNullList());
@@ -146,14 +149,14 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	}
 	
 	@Nullable
-	private SourciteRecipe getRecipe(ItemStack stack) {
+	private JavacRefineryRecipe getRecipe(ItemStack stack) {
 		if(stack == null) {
 			return null;
 		}
 		
-		Set<IRecipe<?>> recipes = findRecipesByType(RecipeSerializerInit.SOURCITE_TYPE, this.world);
+		Set<IRecipe<?>> recipes = findRecipesByType(RecipeSerializerInit.JAVAC_REFINERY_TYPE, this.world);
 		for (IRecipe<?> iRecipe : recipes) {
-			SourciteRecipe recipe = (SourciteRecipe) iRecipe;
+			JavacRefineryRecipe recipe = (JavacRefineryRecipe) iRecipe;
 			if (recipe.matches(new RecipeWrapper(this.inventory), this.world)) {
 				return recipe;
 			}

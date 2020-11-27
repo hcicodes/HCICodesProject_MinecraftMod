@@ -58,8 +58,8 @@ public class HumberCraft
 
         //other stuff above here
         
-       // ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
-       // ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
+        ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
+        ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
         
         PortalInit.BLOCKS.register(modEventBus);
         
@@ -82,12 +82,12 @@ public class HumberCraft
     {
     }
     
-    
+    /*
     @SubscribeEvent
     public static boolean onTrySpawnPortal(IWorld world, BlockPos pos, NetherPortalBlock.Size size)
     {
         return MinecraftForge.EVENT_BUS.post(new BlockEvent.PortalSpawnEvent(world, pos, world.getBlockState(pos), size));
-    }
+    }*/
     
     @SubscribeEvent
     public static void onRegisterBiomes(final RegistryEvent.Register<Biome> event) {

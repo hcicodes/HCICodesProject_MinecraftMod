@@ -21,6 +21,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, HumberCraft.MOD_ID);
 	
+	public static final RegistryObject<Item> JAVAC_REFINERY_ITEM = ITEMS.register("javac_refinery_block", () -> new BlockItemBase(BlockInit.JAVAC_REFINERY.get()));
+	
+	
 	// Items
 	public static final RegistryObject<Item> JAVIUM = ITEMS.register("javium", ItemBase::new);
 	public static final RegistryObject<Item> JAVIUM_BLOCK_ITEM = ITEMS.register("javium_block", () -> new BlockItemBase(BlockInit.JAVIUM_BLOCK.get()));

@@ -14,8 +14,10 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -23,22 +25,24 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraft.state.StateContainer.Builder;
 
 public class BlockJavacRefinery extends Block{
 	
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final BooleanProperty RUNNING = BooleanProperty.create("refining");
+	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 	
 	public BlockJavacRefinery(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(RUNNING, false));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false));
 	}
 	
 	@Override
@@ -54,6 +58,7 @@ public class BlockJavacRefinery extends Block{
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
+		builder.add(FACING, LIT);
 	}
 	
 	@Override
@@ -66,9 +71,10 @@ public class BlockJavacRefinery extends Block{
 		return state.with(FACING, rotationIn.rotate(state.get(FACING)));
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public int getLightValue(BlockState state) {
-		return state.get(RUNNING) ? super.getLightValue(state) : 0;
+		return state.get(LIT) ? super.getLightValue(state) : 0;
 	}
 	
 	@Override
@@ -116,7 +122,7 @@ public class BlockJavacRefinery extends Block{
 	@Override
 	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if(tile instanceof JavacRefineryTileEntity) {
+		if(tile instanceof JavacRefineryTileEntity && state.getBlock() != newState.getBlock()) {
 			JavacRefineryTileEntity javac = (JavacRefineryTileEntity) tile;
 			((JavacRefineryItemHandler) javac.getInventory()).toNonNullList().forEach(item ->{
 				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);

@@ -36,7 +36,7 @@ public class BlockInit {
 		new BlockBase(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 5.0f)
 				.sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)));
 	
-	//public static final RegistryObject<Block> JAVAC_REFINERY = BLOCKS.register("javac_refinery", 
-		//	() -> new BlockJavacRefinery(Block.Properties.from(Blocks.FURNACE)));
+	public static final RegistryObject<Block> JAVAC_REFINERY = BLOCKS.register("javac_refinery", 
+			() -> new BlockJavacRefinery(Block.Properties.from(Blocks.FURNACE)));
 
 }
