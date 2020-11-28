@@ -11,9 +11,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public interface IJavacRefineryRecipe extends IRecipe<RecipeWrapper>{
+public interface IRefiningRecipe extends IRecipe<RecipeWrapper>{
 	
-	ResourceLocation  RECIPE_TYPE_ID = new ResourceLocation(HumberCraft.MOD_ID, "javac_refinery");
+	ResourceLocation RECIPE_TYPE_ID = new ResourceLocation(HumberCraft.MOD_ID, "refining");
 	
 	@Nullable
 	@Override

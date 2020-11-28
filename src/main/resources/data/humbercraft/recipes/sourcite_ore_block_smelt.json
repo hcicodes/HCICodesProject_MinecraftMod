@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smelting",
+  "type": "humbercraft:refining",
   "ingredient": {
     "item": "humbercraft:sourcite_ore_block"
   },

@@ -10,13 +10,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public class JavacRefineryRecipe implements IJavacRefineryRecipe {
+public class RefiningRecipe implements IRefiningRecipe {
 
 	private final ResourceLocation id;
 	private Ingredient input;
 	private final ItemStack output;
 	
-	public JavacRefineryRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
+	public RefiningRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
 		this.id = id;
 		this.output = output;
 		this.input = input;
@@ -47,7 +47,7 @@ public class JavacRefineryRecipe implements IJavacRefineryRecipe {
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return RecipeSerializerInit.JAVAC_REFINERY_SERIALIZER.get();
+		return RecipeSerializerInit.REFINING_SERIALIZER.get();
 	}
 
 	@Override

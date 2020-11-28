@@ -12,7 +12,7 @@ import com.hci.humbercraft.blocks.BlockJavacRefinery;
 import com.hci.humbercraft.container.JavacRefineryContainer;
 import com.hci.humbercraft.init.ModTileEntityTypes;
 import com.hci.humbercraft.init.RecipeSerializerInit;
-import com.hci.humbercraft.recipes.JavacRefineryRecipe;
+import com.hci.humbercraft.recipes.RefiningRecipe;
 import com.hci.humbercraft.util.JavacRefineryItemHandler;
 
 import net.minecraft.client.Minecraft;
@@ -50,7 +50,7 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	
 	private ITextComponent customName;
 	public int currentSmeltTime;
-	public final int maxSmeltTime = 100;
+	public final int maxSmeltTime = 40;
 	private JavacRefineryItemHandler inventory;
 	
 	public JavacRefineryTileEntity(final TileEntityType<?> tileEntityTypeIn) {
@@ -71,12 +71,11 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	@Override
 	public void tick() {
 		boolean dirty = false;
-		
 		if(this.world != null && !this.world.isRemote) {
-			if(this.world.isBlockPowered(this.getPos())) {
 				if (this.getRecipe(this.inventory.getStackInSlot(0)) != null) {
 					if (this.currentSmeltTime != this.maxSmeltTime) {
-						this.world.setBlockState(this.getPos(), this.getBlockState().with(BlockJavacRefinery.LIT, true));
+						this.world.setBlockState(this.getPos(), 
+								this.getBlockState().with(BlockJavacRefinery.LIT, true));
 						this.currentSmeltTime++;
 						dirty = true;
 					} else {
@@ -87,8 +86,10 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 						this.inventory.insertItem(1, output.copy(), false);
 						this.inventory.decrStackSize(0, 1);
 						dirty = true;
-					}
-				}
+					}				
+			}
+			if(this.inventory.getStackInSlot(0).isEmpty()) {
+					this.currentSmeltTime = 0;
 			}
 		}
 		
@@ -124,8 +125,8 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	@Override
 	public void read(CompoundNBT compound) {
 		super.read(compound);
-		if(compound.contains("CustomeName", Constants.NBT.TAG_STRING)) {
-			this.customName = ITextComponent.Serializer.fromJson(compound.getString("CustomeName"));
+		if(compound.contains("CustomName", Constants.NBT.TAG_STRING)) {
+			this.customName = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
 		}
 		
 		NonNullList<ItemStack> inv = NonNullList.<ItemStack>withSize(this.inventory.getSlots(), ItemStack.EMPTY);
@@ -139,7 +140,7 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 		if(this.customName != null) {
-			compound.putString("CustomeName", ITextComponent.Serializer.toJson(customName));
+			compound.putString("CustomName", ITextComponent.Serializer.toJson(customName));
 		}
 		
 		ItemStackHelper.saveAllItems(compound, this.inventory.toNonNullList());
@@ -149,14 +150,14 @@ public class JavacRefineryTileEntity extends TileEntity implements ITickableTile
 	}
 	
 	@Nullable
-	private JavacRefineryRecipe getRecipe(ItemStack stack) {
+	private RefiningRecipe getRecipe(ItemStack stack) {
 		if(stack == null) {
 			return null;
 		}
 		
-		Set<IRecipe<?>> recipes = findRecipesByType(RecipeSerializerInit.JAVAC_REFINERY_TYPE, this.world);
+		Set<IRecipe<?>> recipes = findRecipesByType(RecipeSerializerInit.REFINING_TYPE, this.world);
 		for (IRecipe<?> iRecipe : recipes) {
-			JavacRefineryRecipe recipe = (JavacRefineryRecipe) iRecipe;
+			RefiningRecipe recipe = (RefiningRecipe) iRecipe;
 			if (recipe.matches(new RecipeWrapper(this.inventory), this.world)) {
 				return recipe;
 			}

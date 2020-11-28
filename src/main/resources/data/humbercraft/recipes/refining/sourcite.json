@@ -1,8 +1,9 @@
 {
-	"type": "humbercraft:test"
-	"output"{
+	"type": "humbercraft:refining",
+	"output": {
 		"item": "humbercraft:sourcite"
 	},
+	
 	"input": {
 		"item": "humbercraft:sourcite_ore_block"
 	}

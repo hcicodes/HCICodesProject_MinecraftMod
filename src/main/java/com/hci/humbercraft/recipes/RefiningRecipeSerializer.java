@@ -11,27 +11,27 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class JavacRefineryRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>>implements IRecipeSerializer<JavacRefineryRecipe> {
+public class RefiningRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>>implements IRecipeSerializer<RefiningRecipe> {
 	
 	@Override
-	public JavacRefineryRecipe read(ResourceLocation recipeId, JsonObject json) {
+	public RefiningRecipe read(ResourceLocation recipeId, JsonObject json) {
 		ItemStack output = CraftingHelper.getItemStack(JSONUtils.getJsonObject(json, "output"), true);
 		Ingredient input = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
 
-		return new JavacRefineryRecipe(recipeId, input, output);
+		return new RefiningRecipe(recipeId, input, output);
 	}
 	
 
 	@Override
-	public JavacRefineryRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+	public RefiningRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
 		ItemStack output = buffer.readItemStack();
 		Ingredient input = Ingredient.read(buffer);
 
-		return new JavacRefineryRecipe(recipeId, input, output);
+		return new RefiningRecipe(recipeId, input, output);
 	}
 
 	@Override
-	public void write(PacketBuffer buffer, JavacRefineryRecipe recipe) {
+	public void write(PacketBuffer buffer, RefiningRecipe recipe) {
 		Ingredient input = recipe.getIngredients().get(0);
 		input.write(buffer);
 

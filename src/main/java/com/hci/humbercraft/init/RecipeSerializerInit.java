@@ -1,9 +1,9 @@
 package com.hci.humbercraft.init;
 
 import com.hci.humbercraft.HumberCraft;
-import com.hci.humbercraft.recipes.IJavacRefineryRecipe;
-import com.hci.humbercraft.recipes.JavacRefineryRecipe;
-import com.hci.humbercraft.recipes.JavacRefineryRecipeSerializer;
+import com.hci.humbercraft.recipes.IRefiningRecipe;
+import com.hci.humbercraft.recipes.RefiningRecipe;
+import com.hci.humbercraft.recipes.RefiningRecipeSerializer;
 
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -16,14 +16,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class RecipeSerializerInit {
 
-	public static final IRecipeSerializer<JavacRefineryRecipe> JAVAC_REFINERY_RECIPE_SERIALIZER = new JavacRefineryRecipeSerializer();
-	public static final IRecipeType<IJavacRefineryRecipe> JAVAC_REFINERY_TYPE = registerType(IJavacRefineryRecipe.RECIPE_TYPE_ID);
+	public static final IRecipeSerializer<RefiningRecipe> REFINING_RECIPE_SERIALIZER = new RefiningRecipeSerializer();
+	public static final IRecipeType<IRefiningRecipe> REFINING_TYPE = registerType(IRefiningRecipe.RECIPE_TYPE_ID);
 
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = new DeferredRegister<>(
 			ForgeRegistries.RECIPE_SERIALIZERS, HumberCraft.MOD_ID);
 
-	public static final RegistryObject<IRecipeSerializer<?>> JAVAC_REFINERY_SERIALIZER = RECIPE_SERIALIZERS.register("test",
-			() -> JAVAC_REFINERY_RECIPE_SERIALIZER);
+	public static final RegistryObject<IRecipeSerializer<?>> REFINING_SERIALIZER = RECIPE_SERIALIZERS.register("refining",
+			() -> REFINING_RECIPE_SERIALIZER);
 	
 	private static class RecipeType<T extends IRecipe<?>> implements IRecipeType<T> {
 		@Override

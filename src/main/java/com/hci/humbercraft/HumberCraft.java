@@ -31,6 +31,7 @@ import com.hci.humbercraft.init.ItemInit;
 import com.hci.humbercraft.init.ModContainerTypes;
 import com.hci.humbercraft.init.ModTileEntityTypes;
 import com.hci.humbercraft.init.PortalInit;
+import com.hci.humbercraft.init.RecipeSerializerInit;
 import com.hci.humbercraft.portal.PortalBlockInit;
 import com.hci.humbercraft.util.RegistryHandler;
 
@@ -41,7 +42,6 @@ public class HumberCraft
     // Logger reference - use this object to log anything to the console.
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "humbercraft";
-    
     public static final ResourceLocation JAVA_DIMENSION_TYPE = new ResourceLocation(MOD_ID, "java");
     
     
@@ -54,9 +54,8 @@ public class HumberCraft
         
         //initializing
         ItemInit.ITEMS.register(modEventBus);
+        RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
-
-        //other stuff above here
         
         ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
