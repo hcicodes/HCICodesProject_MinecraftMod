@@ -22,6 +22,7 @@ public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, HumberCraft.MOD_ID);
 	
 	public static final RegistryObject<Item> JAVAC_REFINERY_ITEM = ITEMS.register("javac_refinery_block", () -> new BlockItemBase(BlockInit.JAVAC_REFINERY.get()));
+	public static final RegistryObject<Item> JAVA_DIMENSION_TELEPORTER_ITEM = ITEMS.register("java_dimension_teleporter", () -> new BlockItemBase(BlockInit.JAVA_DIMENSION_TELEPORTER.get()));
 	
 	
 	// Items

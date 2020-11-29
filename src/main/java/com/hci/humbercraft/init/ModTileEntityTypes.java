@@ -1,6 +1,7 @@
 package com.hci.humbercraft.init;
 
 import com.hci.humbercraft.HumberCraft;
+import com.hci.humbercraft.tileentity.JavaDimensionTeleporterTileEntity;
 import com.hci.humbercraft.tileentity.JavacRefineryTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
@@ -16,4 +17,7 @@ public class ModTileEntityTypes {
 			.register("javac_refinery", () -> TileEntityType.Builder.create(JavacRefineryTileEntity::new,
 					BlockInit.JAVAC_REFINERY.get()).build(null));
 	
+	public static final RegistryObject<TileEntityType<JavaDimensionTeleporterTileEntity>> JAVA_DIMENSION_TELEPORTER = TILE_ENTITY_TYPES
+			.register("java_dimension_teleporter", () -> TileEntityType.Builder.create(JavaDimensionTeleporterTileEntity::new,
+					BlockInit.JAVA_DIMENSION_TELEPORTER.get()).build(null));
 }

@@ -3,6 +3,7 @@ package com.hci.humbercraft.init;
 import com.hci.humbercraft.HumberCraft;
 import com.hci.humbercraft.blocks.BlockBase;
 import com.hci.humbercraft.blocks.BlockJavacRefinery;
+import com.hci.humbercraft.blocks.JavaDimensionTeleporterBlock;
 import com.hci.humbercraft.blocks.JaviumOreBlock;
 import com.hci.humbercraft.portal.JavaPortalBlock;
 
@@ -38,5 +39,7 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> JAVAC_REFINERY = BLOCKS.register("javac_refinery", 
 			() -> new BlockJavacRefinery(Block.Properties.from(Blocks.FURNACE)));
-
+	
+	public static final RegistryObject<Block> JAVA_DIMENSION_TELEPORTER = BLOCKS.register("java_dimension_teleporter", 
+			() -> new JavaDimensionTeleporterBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
 }
