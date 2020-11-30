@@ -87,20 +87,6 @@ public class JavaDimensionTeleporterBlock extends Block{
 			worldIn.removeTileEntity(pos);
 		}		
 	}
-	
-	/*
-	@Override
-	public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-		Random random = new Random(worldIn.getSeed());
-		if (!player.isPassenger() && !player.isBeingRidden() && player.isNonBoss()) {
-			if (player.dimension != DimensionType.byName(HumberCraft.JAVA_DIMENSION_TYPE)) {
-				teleportToDimension(player, DimensionType.byName(HumberCraft.JAVA_DIMENSION_TYPE), pos, worldIn);
-			} 
-			else {
-				teleportToDimension(player, DimensionType.byName(new ResourceLocation("minecraft", "overworld")),pos, worldIn);
-			}
-		}
-	}*/
 	  
 	private void teleportToDimension(Entity entityIn, DimensionType dimension, BlockPos pos, World worldIn) {
 		entityIn.changeDimension(dimension, new ITeleporter() {
@@ -111,8 +97,7 @@ public class JavaDimensionTeleporterBlock extends Block{
 				entity.setPositionAndUpdate(pos.getX(), getYPlacement(destWorld, pos) + 1, pos.getZ());
 				return entity;
 			}
-		});
-		
+		});		
 	}
 	
 	public int getYPlacement(ServerWorld destWorld, BlockPos pos) {
