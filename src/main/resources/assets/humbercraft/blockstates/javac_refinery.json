@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north,lit=false":  { "model": "humbercraft:block/javac_refinery" },
+        "facing=east,lit=false":   { "model": "humbercraft:block/javac_refinery", "y": 90 },
+        "facing=south,lit=false":   { "model": "humbercraft:block/javac_refinery", "y": 180 },
+        "facing=west,lit=false":   { "model": "humbercraft:block/javac_refinery", "y": 270 }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "humbercraft:blocks/javac_refinery_top",
+        "front": "humbercraft:blocks/javac_refinery_front",
+        "side": "humbercraft:blocks/javac_refinery_side"
+    }
+}

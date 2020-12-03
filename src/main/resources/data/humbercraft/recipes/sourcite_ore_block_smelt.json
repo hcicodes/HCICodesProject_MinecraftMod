@@ -1,9 +1,0 @@
-{
-  "type": "humbercraft:refining",
-  "ingredient": {
-    "item": "humbercraft:sourcite_ore_block"
-  },
-  "result": "humbercraft:sourcite",
-  "experience": 0.0,
-  "cookingtime": 200
-}

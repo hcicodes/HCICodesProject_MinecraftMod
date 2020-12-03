@@ -1,20 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "humbercraft:jarium"
-    },
-    {
-      "item": "humbercraft:jarium"
-    },
-    {
-      "item": "humbercraft:jarium"
-    },
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "XX",
+    "XX"
+  ],
+  "key":
+  {
+    "X":
     {
       "item": "humbercraft:jarium"
     }
-    
-  ],
+  },
   "result":
   {
     "item": "humbercraft:jarium_block",
